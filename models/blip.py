@@ -161,6 +161,7 @@ class BLIP_Decoder(nn.Module):
         min_length=10,
         top_p=0.9,
         repetition_penalty=1.0,
+        **kwargs
     ):
         image_embeds = self.visual_encoder(image)
 
@@ -195,6 +196,7 @@ class BLIP_Decoder(nn.Module):
                 pad_token_id=self.tokenizer.pad_token_id,
                 repetition_penalty=1.1,
                 **model_kwargs,
+                **kwargs
             )
         else:
             # beam search
@@ -207,6 +209,7 @@ class BLIP_Decoder(nn.Module):
                 pad_token_id=self.tokenizer.pad_token_id,
                 repetition_penalty=repetition_penalty,
                 **model_kwargs,
+                **kwargs
             )
 
         captions = []
